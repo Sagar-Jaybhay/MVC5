@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "NameList";
+}
+
+<h2>NameList</h2>
+
+<h3>List Of Names</h3>
+
+<br/>
+
+<div class="row">
+    <ul>
+        @foreach (var str in ViewBag.list)
+        {
+            <li>@str</li>
+        }
+    </ul>
+</div>

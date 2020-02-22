@@ -8,8 +8,10 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
+            ViewBag.id = id;
+            ViewBag.name =Request.QueryString["name"];
             return View();
         }
 
@@ -24,6 +26,20 @@ namespace WebApplication1.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult NameList()
+        {
+            var list=new List<string>()
+            {
+                "Sagar Jaybhay",
+                "Ram",
+                "Raghu",
+                "Ravan"
+
+            };
+            ViewBag.list = list;
             return View();
         }
     }
