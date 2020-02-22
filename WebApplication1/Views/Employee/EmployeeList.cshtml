@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeList";
+}
+
+<h2>EmployeeList</h2>
+
+
+
+
+<h3>Here We can display ids DepartmentWise</h3>
+
+
+<ul>
+
+    @foreach (var id in (List<int>)ViewBag.EmpIDs)
+    {
+        <li>
+            @Html.ActionLink(id.ToString(), "Index", new { EmpID = id.ToString() })
+        </li>
+    }
+</ul>
+
+<p>
+
+    @Html.ActionLink("Back to Department List", "DisplayDepartments")
+</p>

@@ -25,5 +25,16 @@ namespace WebApplication1.Controllers
             return View();
 
         }
+        public ActionResult DisplayDepartments()
+        {
+            var data = new BusinessLogic.Business().GetDepartments();
+            return View(data);
+        }
+        public ActionResult EmployeeList(string DEptID)
+        {
+            var data = new BusinessLogic.Business().GetEmpIDs(DEptID);
+            ViewBag.EmpIDs = data;
+            return View();
+        }
     }
 }

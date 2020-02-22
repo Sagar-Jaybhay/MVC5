@@ -14,7 +14,6 @@ namespace WebApplication1.Models
         public string EmpGender { get; set; }
         public string EmpCity { get; set; }
         public string EmpEmail { get; set; }
-
-
+        public int DepartmentID { get; set; }
     }
 }

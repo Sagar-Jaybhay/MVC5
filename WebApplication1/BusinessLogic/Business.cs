@@ -31,7 +31,8 @@ namespace WebApplication1.BusinessLogic
                     EmpEmail = data.Rows[0]["EmpEmail"].ToString(),
                     EmpGender = data.Rows[0]["EmpGender"].ToString(),
                     EmpName = data.Rows[0]["EmpName"].ToString(),
-                    EmpSalary = Convert.ToDouble(data.Rows[0]["EmpSalary"].ToString())
+                    EmpSalary = Convert.ToDouble(data.Rows[0]["EmpSalary"].ToString()),
+                    DepartmentID = Convert.ToInt32(data.Rows[0]["DepartmentID"].ToString())
                 };
 
                 return employee;
@@ -52,5 +53,42 @@ namespace WebApplication1.BusinessLogic
             }
             return ids;
         }
+
+        public List<Department> GetDepartments()
+        {
+            List<Department> departments = new List<Department>();
+            string query = "select * from Department order by DepartmentID";
+            var data = this.dataAccess.GetTable(query);
+            if(data!=null&&data.Rows.Count>0)
+            {
+
+                foreach(DataRow dataRow in data.Rows)
+                {
+                    var dept = new Department()
+                    {
+                        DepartmentID = Convert.ToInt32(dataRow["DepartmentID"].ToString()),
+                        DepartmentName = dataRow["DepartmentName"].ToString()
+                    };
+                    departments.Add(dept);
+                }
+
+            }
+            return departments;
+
+        }
+        public List<int> GetEmpIDs(string DepartmentID)
+        {
+            List<int> ids = new List<int>();
+            string Query = "select  EmpID from Employee where DepartmentID="+DepartmentID;
+            var data = this.dataAccess.GetTable(Query);
+            if (data != null && data.Rows.Count > 0)
+            {
+                foreach (DataRow id in data.Rows)
+                    ids.Add(Convert.ToInt32(id["EmpID"]));
+            }
+            return ids;
+        }
+
+
     }
 }

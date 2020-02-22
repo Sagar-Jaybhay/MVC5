@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.Department>
+
+@{
+    ViewBag.Title = "DisplayDepartments";
+}
+
+<h2>DisplayDepartments</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+   
+    <table style="border:thin" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <td>DepartmentID</td>
+                <td>DepartmentName</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var dept in Model)
+            {
+            <tr>
+                <td>@dept.DepartmentID</td>
+                <td>@Html.ActionLink(dept.DepartmentName,"EmployeeList",new { DEptID=dept.DepartmentID})</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
