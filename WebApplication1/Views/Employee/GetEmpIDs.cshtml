@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "GetEmpIDs";
+}
+
+<h2>GetEmpIDs</h2>
+
+<h3>Here We can display ids</h3>
+
+
+<ul>
+
+    @foreach (var id in (List<int>)ViewData["ids"])
+    {
+        <li>
+            @Html.ActionLink(id.ToString(), "Index", new { EmpID = id.ToString() })
+        </li>
+        }
+</ul>

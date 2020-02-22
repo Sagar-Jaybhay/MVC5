@@ -31,6 +31,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult NameList()
         {
+            ViewData["Today"] = DateTime.Now;
             var list=new List<string>()
             {
                 "Sagar Jaybhay",
