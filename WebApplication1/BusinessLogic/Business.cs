@@ -89,6 +89,36 @@ namespace WebApplication1.BusinessLogic
             return ids;
         }
 
+        public IEnumerable<Employee> GetEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+            string Query = "select top 25 * from Employee";
+            var data = this.dataAccess.GetTable(Query);
+            if(data!=null&&data.Rows.Count>0)
+            {
+                foreach(DataRow dataRow in data.Rows)
+                {
+                    var emp = new Employee()
+                    {
+                        EmpID = Convert.ToInt32(dataRow["EmpID"]),
+                        EmpCity = dataRow["EmpCity"].ToString(),
+                        EmpEmail = dataRow["EmpEmail"].ToString(),
+                        EmpGender = dataRow["EmpGender"].ToString(),
+                        EmpName = dataRow["EmpName"].ToString(),
+                        EmpSalary = Convert.ToDouble(dataRow["EmpSalary"].ToString()),
+                        DepartmentID = Convert.ToInt32(dataRow["DepartmentID"].ToString())
+
+
+                    };
+                    employees.Add(emp);
+
+                }
+
+            }
+            return employees;
+
+
+        }
 
     }
 }

@@ -1,0 +1,42 @@
+﻿@model  IEnumerable<WebApplication1.Models.Employee>
+@using WebApplication1.Models
+
+@{
+    ViewBag.Title = "DisplayCompleteEmployee";
+}
+
+<h2>Display Complete Employee</h2>
+
+
+
+<table class="table table-bordered table-responsive">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Gender</td>
+            <td>City</td>
+            <td>Email</td>
+            <td>Salary</td>
+            <td>Take Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+        <tr>
+            <td>@emp.EmpName</td>
+            <td>@emp.EmpGender</td>
+            <td>@emp.EmpCity</td>
+            <td>@emp.EmpEmail</td>
+            <td>@emp.EmpSalary</td>
+            <td>
+                @Html.ActionLink("Edit", "EditEmpDetails", new { EmpID = emp.EmpID }) |
+                @Html.ActionLink("Details", "Index", new { EmpID = emp.EmpID }) |
+                @Html.ActionLink("Delete", "EditEmpDetails", new { EmpID = emp.EmpID }) |
+            </td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>

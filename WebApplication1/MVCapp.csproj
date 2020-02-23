@@ -171,6 +171,7 @@
     <Content Include="Views\Employee\GetEmpIDs.cshtml" />
     <Content Include="Views\Employee\DisplayDepartments.cshtml" />
     <Content Include="Views\Employee\EmployeeList.cshtml" />
+    <Content Include="Views\Employee\DisplayCompleteEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

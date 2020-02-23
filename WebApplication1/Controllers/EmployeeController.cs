@@ -36,5 +36,12 @@ namespace WebApplication1.Controllers
             ViewBag.EmpIDs = data;
             return View();
         }
+
+        public ActionResult DisplayCompleteEmployee()
+        {
+            var emplist = new BusinessLogic.Business().GetEmployees();
+
+            return View(emplist);
+        }
     }
 }
