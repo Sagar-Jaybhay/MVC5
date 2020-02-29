@@ -118,9 +118,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Edit(Employee employee)
         {
+            var emp = new BusinessLogic.Business().GetEmployee(employee.EmpID.ToString());
+
+
+
+            UpdateModel(emp, new string[] { "EmpSalary", "EmpGender", "EmpCity", "EmpEmail", "DepartmentID" });
             if (ModelState.IsValid)
             {
-                new BusinessLogic.Business().UpdateEmployee(employee);
+                new BusinessLogic.Business().UpdateEmployee(emp);
                 return RedirectToAction("DisplayCompleteEmployee");
             }
             return View(employee);
