@@ -43,5 +43,89 @@ namespace WebApplication1.Controllers
 
             return View(emplist);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult Create(Employee employee)
+        //{
+        //    new BusinessLogic.Business().CreateEmployee(employee);
+        //    return RedirectToAction("DisplayCompleteEmployee");
+        //}
+
+        //[HttpPost]
+        //public ActionResult Create(string EmpName, string EmpSalary, string gender,string EmpEmail, string EmpCity, int departmentid )
+        //{
+        //    var employee = new Employee()
+        //    {
+        //        EmpName= EmpName,
+        //        EmpSalary=Convert.ToDouble(EmpSalary),
+        //        EmpCity= EmpCity,
+        //        EmpEmail= EmpEmail,
+        //        EmpGender=gender,
+        //        DepartmentID=departmentid
+
+
+        //    };
+
+        //    new BusinessLogic.Business().CreateEmployee(employee);
+        //    return RedirectToAction("DisplayCompleteEmployee");
+        //}
+
+        //[HttpPost] // using UpdateModel
+        //[ActionName("Create")]
+        //public ActionResult Create_Post()
+        //{
+        //    Employee employee = new Employee();
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        UpdateModel(employee);
+
+        //        new BusinessLogic.Business().CreateEmployee(employee);
+        //        return RedirectToAction("DisplayCompleteEmployee");
+        //    }
+        //    return View();
+        //}
+        [HttpPost] // using TryUpdateModel
+        [ActionName("Create")]
+        public ActionResult Create_Post()
+        {
+            Employee employee = new Employee();
+            TryUpdateModel(employee);
+
+            if (ModelState.IsValid)
+            {
+                new BusinessLogic.Business().CreateEmployee(employee);
+                return RedirectToAction("DisplayCompleteEmployee");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string EmpID)
+        {
+            var Employye = new BusinessLogic.Business().GetEmployee(EmpID);
+
+            return View(Employye);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                new BusinessLogic.Business().UpdateEmployee(employee);
+                return RedirectToAction("DisplayCompleteEmployee");
+            }
+            return View(employee);
+
+        }
+
     }
 }

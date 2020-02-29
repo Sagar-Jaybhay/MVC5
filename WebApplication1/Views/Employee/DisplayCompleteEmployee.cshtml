@@ -7,8 +7,13 @@
 
 <h2>Display Complete Employee</h2>
 
-
-
+<br />
+<div class="row" style="margin-left:0px !important">
+    @Html.ActionLink("Create Employee", "Create")
+</div>
+<br />
+<hr />
+<br />
 <table class="table table-bordered table-responsive">
     <thead>
         <tr>
@@ -30,7 +35,7 @@
             <td>@emp.EmpEmail</td>
             <td>@emp.EmpSalary</td>
             <td>
-                @Html.ActionLink("Edit", "EditEmpDetails", new { EmpID = emp.EmpID }) |
+                @Html.ActionLink("Edit", "Edit", new { EmpID = emp.EmpID }) |
                 @Html.ActionLink("Details", "Index", new { EmpID = emp.EmpID }) |
                 @Html.ActionLink("Delete", "EditEmpDetails", new { EmpID = emp.EmpID }) |
             </td>

@@ -120,5 +120,14 @@ namespace WebApplication1.BusinessLogic
 
         }
 
+        public void CreateEmployee(Employee employee)
+        {
+            this.dataAccess.ExecuteProcedure(employee.EmpName, employee.EmpEmail, employee.EmpGender, employee.EmpSalary, employee.DepartmentID, employee.EmpCity);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            this.dataAccess.UpdateEmployee(employee.EmpID,employee.EmpName, employee.EmpEmail, employee.EmpGender, employee.EmpSalary, employee.DepartmentID, employee.EmpCity);
+        }
     }
 }
