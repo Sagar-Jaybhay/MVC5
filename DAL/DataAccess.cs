@@ -98,5 +98,19 @@ namespace DAL
 
         }
 
+
+        public int ExecuteQuery(string Query)
+        {
+            int result = -1;
+            using(var con=new SqlConnection(this._ConnectionString))
+            {
+                con.Open();
+                var cmd = new SqlCommand(Query, con);
+                result = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+
+            }
+            return result;
+        }
     }
 }

@@ -37,7 +37,12 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { EmpID = emp.EmpID }) |
                 @Html.ActionLink("Details", "Index", new { EmpID = emp.EmpID }) |
-                @Html.ActionLink("Delete", "EditEmpDetails", new { EmpID = emp.EmpID }) |
+                @*@Html.ActionLink("Delete", "EditEmpDetails", new { EmpID = emp.EmpID }) |*@
+                @using (Html.BeginForm("Delete","Employee",new { EmpID=emp.EmpID}))
+                {
+                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are U sure for Delete EmpId=@emp.EmpID')"/>
+                }
+
             </td>
         </tr>
         }

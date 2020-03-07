@@ -9,8 +9,13 @@
 
 <br/>
 
+<div>
+    Date Time Is :-  @ViewData["Today1"].ToString()
+    </div>
+
 <div class="row">
     <ul>
+
         @foreach (var str in ViewBag.list)
         {
             <li>@str</li>

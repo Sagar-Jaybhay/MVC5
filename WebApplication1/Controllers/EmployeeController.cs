@@ -96,12 +96,27 @@ namespace WebApplication1.Controllers
         public ActionResult Create_Post()
         {
             Employee employee = new Employee();
-            TryUpdateModel(employee);
+            TryUpdateModel(employee,null,null,new string[]{"EmpID" });
+            ModelState.Remove("EmpID");
 
             if (ModelState.IsValid)
             {
                 new BusinessLogic.Business().CreateEmployee(employee);
                 return RedirectToAction("DisplayCompleteEmployee");
+            }else
+            {
+                //if (!ModelState.IsValid)
+              
+                    var modelErrors = new List<string>();
+                    foreach (var modelState in ModelState.Values)
+                    {
+                        foreach (var modelError in modelState.Errors)
+                        {
+                            modelErrors.Add(modelError.ErrorMessage);
+                        }
+                    }
+                    // do something with the error list :)
+                
             }
             return View();
         }
@@ -115,7 +130,7 @@ namespace WebApplication1.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost] // Include Or Exclude Properties Using UpdateModel function
         public ActionResult Edit(Employee employee)
         {
             var emp = new BusinessLogic.Business().GetEmployee(employee.EmpID.ToString());
@@ -129,6 +144,52 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("DisplayCompleteEmployee");
             }
             return View(employee);
+
+        }
+
+        //[HttpPost] // Bind Atrtibute Function
+        //public ActionResult Edit([Bind(Exclude ="EmpName")]Employee employee)
+        ////public ActionResult Edit([Bind(Include = "EmpID,EmpGender,EmpSalary, EmpCity, EmpEmail, DepartmentID")]Employee employee)
+        //{
+        //    var emp = new BusinessLogic.Business().GetEmployee(employee.EmpID.ToString());
+        //    employee.EmpName = emp.EmpName;
+
+
+        //  //  UpdateModel(emp, new string[] { "EmpSalary", "EmpGender", "EmpCity", "EmpEmail", "DepartmentID" });
+        //    if (ModelState.IsValid)
+        //    {
+        //        new BusinessLogic.Business().UpdateEmployee(employee);
+        //        return RedirectToAction("DisplayCompleteEmployee");
+        //    }
+        //    return View(employee);
+
+        //}
+
+
+        //[HttpPost] // Bind Atrtibute Function
+        //public ActionResult Edit(int EmpID)       
+        //{
+        //    var emp = new BusinessLogic.Business().GetEmployee(EmpID.ToString());
+        //    UpdateModel<Iemployee>(emp);            
+        //    if (ModelState.IsValid)
+        //    {
+        //        new BusinessLogic.Business().UpdateEmployee(emp);
+        //        return RedirectToAction("DisplayCompleteEmployee");
+        //    }
+        //    return View(emp);
+
+        //}
+
+        [HttpPost]
+        public ActionResult Delete(string EmpID)
+        {
+            new BusinessLogic.Business().DeleteEmployee(Convert.ToInt32(EmpID));            
+            return RedirectToAction("DisplayCompleteEmployee");
+        }
+
+        public ActionResult wheretofindview()
+        {
+            return View("~/Views/Employee/wheretofindview.cshtml");
 
         }
 

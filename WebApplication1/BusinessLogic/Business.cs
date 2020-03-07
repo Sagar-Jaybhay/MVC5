@@ -129,5 +129,12 @@ namespace WebApplication1.BusinessLogic
         {
             this.dataAccess.UpdateEmployee(employee.EmpID,employee.EmpName, employee.EmpEmail, employee.EmpGender, employee.EmpSalary, employee.DepartmentID, employee.EmpCity);
         }
+
+        public int DeleteEmployee(int Id)
+        {
+            string query = "delete from employee where empid="+Id;
+            return this.dataAccess.ExecuteQuery(query);
+
+        }
     }
 }
