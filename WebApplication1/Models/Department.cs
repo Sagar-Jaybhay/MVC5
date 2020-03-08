@@ -9,5 +9,7 @@ namespace WebApplication1.Models
     {
         public int DepartmentID { get; set; }
         public string DepartmentName { get; set; }
+
+        public bool? isSelected { get; set; }
     }
 }

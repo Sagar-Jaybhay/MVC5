@@ -76,6 +76,8 @@ namespace WebApplication1.BusinessLogic
             return departments;
 
         }
+
+
         public List<int> GetEmpIDs(string DepartmentID)
         {
             List<int> ids = new List<int>();
@@ -134,6 +136,32 @@ namespace WebApplication1.BusinessLogic
         {
             string query = "delete from employee where empid="+Id;
             return this.dataAccess.ExecuteQuery(query);
+
+        }
+
+
+        public List<Department> GetDepartment()
+        {
+            List<Department> departments = new List<Department>();
+            string query = "select * from Department order by DepartmentID";
+            var data = this.dataAccess.GetTable(query);
+            if (data != null && data.Rows.Count > 0)
+            {
+
+                foreach (DataRow dataRow in data.Rows)
+                {
+                    var dept = new Department()
+                    {
+                        DepartmentID = Convert.ToInt32(dataRow["DepartmentID"].ToString()),
+                        DepartmentName = dataRow["DepartmentName"].ToString(),
+                        isSelected = (dataRow["isSelected"] !=DBNull.Value ? Convert.ToBoolean(dataRow["isSelected"]) : false)
+
+                    };
+                    departments.Add(dept);
+                }
+
+            }
+            return departments;
 
         }
     }
